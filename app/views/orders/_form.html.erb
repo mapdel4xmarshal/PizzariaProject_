@@ -30,4 +30,50 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+  
+  <!--- my codes  -->
+    
+    <div class="panel panel-primary pizza_panel">
+      <div class="panel-heading">SIZE</div>
+          <div class="panel-body">
+              <input type="radio" name="size" id="size" value="Small"> Small <br>
+              <input type="radio" name="size" id="size" value="Medium"> Medium <br>
+              <input type="radio" name="size" id="size" value="Large" checked > Large <br/>
+              <input type="radio" name="size" id="size" value="ExtraLarge"> Extra Large    
+                                  
+              <div class="panel panel-primary pizza_panel">
+                 <div class="panel-heading">CRUST</div>
+                    <div class="panel-body">
+                      <input type="checkbox" id ="crust" name="crust" value="stuffed"> Stuffed <br>
+                    </div>
+              </div>
+              <div class="panel panel-primary pizza_panel">
+                              <div class="panel-heading">CHOOSE MEATS</div>
+                              <div class="panel-body">
+                                  <input type="checkbox" name="topping" value="Pepperoni"> Pepperoni <br>
+                                  <input type="checkbox" name="topping" value="Beef"> Beef <br>
+                                  <input type="checkbox" name="topping" value="Bacon"> Bacon <br/>
+                                  <input type="checkbox" name="topping" value="Chicken"> Chicken <br>                                    
+                                  <input type="checkbox" name="topping" value="Sausage"> Sausage
+                              </div> 
+                             </div>  
+                                
+                          <div class="panel panel-primary pizza_panel">
+                              <div class="panel-heading">CHOOSE NONE MEATS</div>
+                              <div class="panel-body">
+                                  <input type="checkbox" name="topping" value="Pineapple"> Pineapple <br>
+                                  <input type="checkbox" name="topping" value="Onion"> Onion <br>
+                                  <input type="checkbox" name="topping" value="Tomatoes"> Tomatoes <br>
+                                  <input type="checkbox" name="topping" value="GreenPepper"> Green Pepper <br>
+                                  <input type="checkbox" name="topping" value="Mushroom"> Mushroom
+                              </div>                             
+                          </div> 
+              
+              
+              
+              
+           </div> 
+    </div>  
+  <!-- ENDS -->
+  
 <% end %>
