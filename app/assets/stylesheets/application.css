@@ -34,7 +34,6 @@ text-align : right;
 
 .pizza_panel {
     float : center; 
-    width: 90%; 
     margin-right : 5px; 
     min-width: 180px;
 }
@@ -70,10 +69,7 @@ text-align : right;
 -------------------------------------------------- */
 /* Padding below the footer and lighter body text */
 
-body {
-  padding-bottom: 40px;
-  color: #5a5a5a;
-}
+
 
 
 /* CUSTOMIZE THE NAVBAR
@@ -199,4 +195,25 @@ body {
   .featurette-heading {
     margin-top: 120px;
   }
+}
+
+
+body {
+    margin:50px 0px; padding:0px;
+    text-align:center;
+    }
+
+#Content {
+    width:80%;
+    margin:0px auto;
+    text-align:left;
+    margin-top: 110px;
+    }
+    
+#mycolor{
+  color: #ffffff;
+}
+
+#completed{
+  color: #29a329;
 }

@@ -32,7 +32,7 @@
       <div class="panel-heading">NEW PIZZA ORDER</div>
           <div class="panel-body">
                                   
-              <div class="panel panel pizza_panel" style="float : left; width : 59%; margin-right:15px;">
+              <div class="panel panel pizza_panel" style="float : left; width : 58%; margin-right:15px;">
                 
                  <div class="panel panel-primary pizza_panel" style="float : left;  width : 100%; ">
                     <div class="panel-heading">PIZZA SIZE</div>
@@ -60,22 +60,40 @@
                       <div class="panel panel-primary pizza_panel" style="float : left; width : 49%; ">
                               <div class="panel-heading">CHOOSE MEATS</div>
                               <div class="panel-body">
-                                  <input type="checkbox" name="topping" value="Pepperoni"> Pepperoni <br>
-                                  <input type="checkbox" name="topping" value="Beef"> Beef <br>
-                                  <input type="checkbox" name="topping" value="Bacon"> Bacon <br/>
-                                  <input type="checkbox" name="topping" value="Chicken"> Chicken <br>                                    
-                                  <input type="checkbox" name="topping" value="Sausage"> Sausage
+                                  <%= check_box_tag 'order[Toppings][]', 'Pepperoni', checked('Pepperoni'), id: 'Toppings_Pepperoni' %>
+                                  <%= label_tag 'Toppings_Pepperoni', 'Pepperoni' %><br>
+                                  
+                                  <%= check_box_tag 'order[Toppings][]', 'Beef', checked('Beef'), id: 'Toppings_Beef' %>
+                                  <%= label_tag 'Toppings_Beef', 'Beef' %><br>
+                                  
+                                  <%= check_box_tag 'order[Bacon][]', 'Bacon', checked('Bacon'), id: 'Toppings_Bacon' %>
+                                  <%= label_tag 'Toppings_Bacon', 'Bacon' %><br>
+                                  
+                                  <%= check_box_tag 'order[Toppings][]', 'Chicken', checked('Chicken'), id: 'Toppings_Chicken' %>
+                                  <%= label_tag 'Toppings_Chicken', 'Chicken' %><br>
+                                  
+                                  <%= check_box_tag 'order[Toppings][]', 'Sausage', checked('Sausage'), id: 'Toppings_Sausage' %>
+                                  <%= label_tag 'Toppings_Sausage', 'Sausage' %>
                               </div> 
                              </div>  
                                 
                           <div class="panel panel-primary pizza_panel" style="float : left; width : 49%;">
                               <div class="panel-heading">CHOOSE NONE MEATS</div>
                               <div class="panel-body">
-                                  <input type="checkbox" name="topping" value="Pineapple"> Pineapple <br>
-                                  <input type="checkbox" name="topping" value="Onion"> Onion <br>
-                                  <input type="checkbox" name="topping" value="Tomatoes"> Tomatoes <br>
-                                  <input type="checkbox" name="topping" value="GreenPepper"> Green Pepper <br>
-                                  <input type="checkbox" name="topping" value="Mushroom"> Mushroom
+                                  <%= check_box_tag 'order[Toppings][]', 'Pineapple', checked('Pineapple'), id: 'Toppings_Pineapple' %>
+                                  <%= label_tag 'Toppings_Pineapple', 'Pineapple' %><br>
+                                  
+                                  <%= check_box_tag 'order[Toppings][]', 'Onion', checked('Onion'), id: 'Toppings_Onion' %>
+                                  <%= label_tag 'Toppings_Onion', 'Onion' %><br>
+                                  
+                                  <%= check_box_tag 'order[Toppings][]', 'Tomatoes', checked('Tomatoes'), id: 'Toppings_Tomatoes' %>
+                                  <%= label_tag 'Toppings_Tomatoes', 'Tomatoes' %><br>
+                                  
+                                  <%= check_box_tag 'order[Toppings][]', 'Green Pepper', checked('Green Pepper'), id: 'Toppings_GreenPepper' %>
+                                  <%= label_tag 'Toppings_GreenPepper', 'Green Pepper' %><br>
+                                  
+                                  <%= check_box_tag 'order[Toppings][]', 'Mushroom', checked('Mushroom'), id: 'Toppings_Mushroom' %>
+                                  <%= label_tag 'Toppings_Mushroom', 'Mushroom' %>
                               </div>                             
                           </div>   
                     
@@ -83,7 +101,7 @@
               
               <div class="panel panel-primary pizza_panel" style="float : left; width : 39%;">
                  <div class="panel-heading">DELIVERY INFORMATION</div>
-                    <div class="panel-body" style="margin-bottom:43px;">
+                    <div class="panel-body" style="margin-bottom:10px;">
                      
                       <fieldset class="form-group" style="float : left; width : 49%; margin-right:3px;">
                                 <label for="Firstname">First Name *</label>
@@ -125,13 +143,35 @@
                                 <input type="text" class="form-control" id="Phone" placeholder="Phone No.">
                               </fieldset> 
                           </div>  
+                      
+                          <center>
+                          <div class="panel panel-primary pizza_panel" style="width : 92%; text-align:left;">
+                              <div class="panel-heading">QUANTITY</div>
+                              <div class="panel-body">
+                                 <fieldset class="form-group">
+                								<select class="form-control" id="Qty">
+                									<option>1</option>
+                									<option>2</option>
+                									<option>3</option>
+                									<option>4</option>
+                									<option>5</option>
+                									<option>6</option>
+                									<option>7</option>
+                									<option>8</option>
+                									<option>9</option>
+                									<option>10</option>
+                                </select>
+                          </fieldset>
+                              </div>                             
+                          </div>   
+                          </center>  
                       <p></p>
                       <div style="float : right; margin : 10px;"><!-- action -->
                         <%= f.submit :class => 'btn btn-primary btn-lg' %>
                       </div>
                       
                       <div style="float : left; margin : 10px;">
-                        <%= link_to 'Back', orders_path, :class => 'btn btn-danger btn-lg' %>
+                        <%= link_to 'Back', orders_path, :class => 'btn btn-danger btn-lg mycolor', :id => 'mycolor' %>
                       </div>
                     </div>
               </div>

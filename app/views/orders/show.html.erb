@@ -1,24 +1,52 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Size:</strong>
-  <%= @order.Size %>
-</p>
-
-<p>
-  <strong>Crust:</strong>
-  <%= @order.Crust %>
-</p>
-
-<p>
-  <strong>Toppings:</strong>
-  <%= @order.Toppings %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @order.Price %>
-</p>
-
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+	<div class="panel panel-primary minwidth">
+		<div class="panel-heading" role="tab" id="heading2">
+      <h4 class="panel-title">Order Summary</h4></div>
+      <div class="panel-body">
+        <p id="notice"><%= notice %></p>
+				<table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Order#</th>
+              <th>Size</th>
+							<th>Crust</th>
+							<th>Toppings</th>
+							<th>Qty</th>
+							<th>Price</th>
+            </tr>
+          </thead>
+          
+          <tbody >
+             <tr>
+              <th><%= @order.id %></th>
+              <th><%= @order.Size %></th>
+							<th><%= @order.Crust %></th>
+							<th><%= @order.Toppings %></th>
+							<th>1</th>
+							<th>$</th>
+            </tr>
+          </tbody>
+        </table>  
+							
+				<div class="panel panel-default">
+					<table class ="table table-bordered">
+						<tr>
+              <td class = "width65">
+								<div><h5>Deliver To :</h5>
+                  <p id = "delivery"></p>
+                </div>
+							</td>
+              <td class = "width35 doRight">
+								<p><strong id ="SubTotal2"></strong></p>
+								<p><strong id ="Tax2">Taxes :</strong></p>
+								<hr>
+								<h3><strong id = "Total2">TOTAL : </strong></h3>
+            </tr>
+					</table>
+				</div>
+				
+				<%= link_to 'Edit', edit_order_path(@order), :class => 'btn btn-info' %>
+        <%= link_to 'Home', orders_path, :class => 'btn btn-primary', :id => 'mycolor' %>
+				
+		  </div>
+		</div>
+  </div>

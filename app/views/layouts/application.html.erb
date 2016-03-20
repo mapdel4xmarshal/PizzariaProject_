@@ -28,9 +28,7 @@
             <div id="navbar" class="navbar-collapse collapse" style="text-align : right;">
               <ul class="nav navbar-nav" style="text-align : right;">
                 <li class="active"><a href="#">Home</a></li>
-                <li><a href="#menu">Menu</a></li>
-                <li><a  href="#myOrder"  data-toggle="modal" data-target="#myOrder">Order Now</a></li>
-                <li><a href="#"  data-toggle="modal" data-target=".bs-example-modal-lg">Find us</a></li>                
+                <li><%= link_to 'New Order', new_order_path %></li>
               </ul>              
                <!-- placeholder -->
                 
@@ -44,8 +42,8 @@
 
       </div>
     </div>
-
+<div id="Content">
 <%= yield %>
-
+</div>
 </body>
 </html>
