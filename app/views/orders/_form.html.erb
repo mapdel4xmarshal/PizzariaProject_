@@ -11,14 +11,10 @@
                         </ul>
                       </div>
                     <% end %>
-
+<!---
   <div class="field">
     <%= f.label :Size %><br>
     <%= f.text_field :Size %>
-  </div>
-  <div class="field">
-    <%= f.label :Crust %><br>
-    <%= f.text_field :Crust %>
   </div>
   <div class="field">
     <%= f.label :Toppings %><br>
@@ -27,7 +23,7 @@
   <div class="field">
     <%= f.label :Price %><br>
     <%= f.text_field :Price %>
-  </div>
+  </div> -->
   
   
   <!--- my codes  -->
@@ -41,10 +37,14 @@
                  <div class="panel panel-primary pizza_panel" style="float : left;  width : 100%; ">
                     <div class="panel-heading">PIZZA SIZE</div>
                     <div class="panel-body">
-                      <input type="radio" name="size" id="size" value="Small"> Small <br>
-                      <input type="radio" name="size" id="size" value="Medium"> Medium <br>
-                      <input type="radio" name="size" id="size" value="Large" checked > Large <br/>
-                      <input type="radio" name="size" id="size" value="ExtraLarge"> Extra Large  <br/>  
+                      <%= f.radio_button("Size", "Small", :value => "Small") %>
+                      <%= label_tag(:Small, "Small") %><br>
+                      <%= f.radio_button("Size", "Medium", :value => "Medium") %>
+                      <%= label_tag(:Medium, "Medium") %><br>
+                      <%= f.radio_button("Size", "Large", :value => "Large") %>
+                      <%= label_tag(:Small, "Large") %><br>
+                      <%= f.radio_button("Size", "Extra Large", :value => "Extra Large") %>
+                      <%= label_tag(:Medium, "Extra Large") %><br>
                     </div>
                   </div>
                   
@@ -52,7 +52,8 @@
                  <div class="panel panel-primary pizza_panel" style="float : left;  width : 100%; ">
                     <div class="panel-heading">CRUST</div>
                     <div class="panel-body">
-                      <input type="checkbox" id ="crust" name="crust" value="stuffed"> Stuffed <br>
+                      <%= f.check_box( :Crust, {}, "Stuffed", "None") %>
+                      <%= label_tag(:Crust, "Stuffed") %>
                     </div>
                   </div>  
                     
