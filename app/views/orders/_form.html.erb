@@ -20,8 +20,7 @@
     
     <div class="panel panel-primary pizza_panel">
       <div class="panel-heading">NEW PIZZA ORDER</div>
-          <div class="panel-body">
-                                  
+          <div class="panel-body">         
               <div class="panel panel pizza_panel" style="float : left; width : 58%; margin-right:15px;">
                 
                  <div class="panel panel-primary pizza_panel" style="float : left;  width : 100%; ">
@@ -29,10 +28,10 @@
                     <div class="panel-body">
                       <% if @order.errors[:Size].any? %>
                       <div id="error_explanation">
-                        <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being processed:</h2>
+                        <h2><%= pluralize(@order.errors[:Size].count, "error") %> on pizza size prohibited this order from being processed:</h2>
                   
                         <ul>
-                        <% @order.errors.full_messages.each do |message| %>
+                        <% @order.errors[:Size].each do |message| %>
                           <li><%= message %></li>
                         <% end %>
                         </ul>
@@ -115,13 +114,13 @@
                               </fieldset>
                                <P><br></P>       
                               <fieldset class="form-group" style="float : left; width : 98%;">
-                                <label for="Address">Address 1 *</label>
-                                <input type="text" class="form-control" id="Address" placeholder="Address">
+                                <%= f.label :Address %><br>
+                                <%= f.text_field :Address, :class => 'form-control' %>
                               </fieldset>
                                       
                               <fieldset class="form-group" style="float : left; width : 49%; margin-right:3px;">
-                                <label for="City">City *</label>
-                                <input type="text" class="form-control" id="City" placeholder="City">
+                                <%= f.label :City %><br>
+                                <%= f.text_field :City, :class => 'form-control' %>
                               </fieldset>
                               
                               <fieldset class="form-group"  style="float : left; width : 49%;">
@@ -135,13 +134,13 @@
                                 </fieldset>	
                                       
                               <fieldset class="form-group" style="float : left; width : 49%; margin-right:3px;">
-                                <label for="PostalCode">Postal Code *</label>
-                                <input type="text" class="form-control" id="PostalCode" placeholder="Postal Code e.g N2P 1E1">
+                                <%= f.label :Postalcode %><br>
+                                <%= f.text_field :Postalcode, :class => 'form-control' %>
                               </fieldset>
                                       
                               <fieldset class="form-group"style="float : left; width : 49%;">
-                                <label for="Phone">Phone No. *</label>
-                                <input type="text" class="form-control" id="Phone" placeholder="Phone No.">
+                                <%= f.label :Phone %><br>
+                                <%= f.text_field :Phone, :class => 'form-control' %>
                               </fieldset> 
                           </div>  
                       
@@ -149,20 +148,21 @@
                           <div class="panel panel-primary pizza_panel" style="width : 92%; text-align:left;">
                               <div class="panel-heading">QUANTITY</div>
                               <div class="panel-body">
+                                  <% if @order.errors[:quantity].any? %>
+                                   <div id="error_explanation">
+                                     <h2><%= pluralize(@order.errors[:quantity].count, "error") %> on quantity prohibited this order from being processed:</h2>
+                              
+                                     <ul>
+                                     <% @order.errors[:quantity].each do |message| %>
+                                       <li><%= message %></li>
+                                     <% end %>
+                                     </ul>
+                                   </div>
+                                 <% end %>
                                  <fieldset class="form-group">
-                								<select class="form-control" id="Qty">
-                									<option>1</option>
-                									<option>2</option>
-                									<option>3</option>
-                									<option>4</option>
-                									<option>5</option>
-                									<option>6</option>
-                									<option>7</option>
-                									<option>8</option>
-                									<option>9</option>
-                									<option>10</option>
-                                </select>
-                          </fieldset>
+                                    <!-- # <%= select_tag(:quantity,options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5], ['6', 6], ['7', 7], ['8', 8], ['9', 9], ['10', 10]], 1), :class => 'form-control' ) %>
+                  								  --><%= f.number_field :quantity, {:min => 1, :max =>100, :class => 'form-control'} %>
+                  								</fieldset>
                               </div>                             
                           </div>   
                           </center>  

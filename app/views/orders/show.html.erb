@@ -19,10 +19,10 @@
              <tr>
               <th><%= @order.id %></th>
               <th><%= @order.Size %></th>
-							<th><%= @order.Crust %></th>
-							<th><%= @order.Toppings %></th>
-							<th>1</th>
-							<th>$</th>
+			  <th><%= @order.Crust %></th>
+			  <th><%= @order.Toppings %></th>
+			  <th><%= @order.quantity %></th>
+			  <th>$</th>
             </tr>
           </tbody>
         </table>  
@@ -31,15 +31,42 @@
 					<table class ="table table-bordered">
 						<tr>
               <td class = "width65">
-								<div><h5>Deliver To :</h5>
-                  <p id = "delivery"></p>
+								<div><h5><strong>Delivery Information</strong></h5><hr>
+                  <p id = "delivery">
+                  	<table>
+                  	 <tr>
+                  	 	<td><strong>Full Name</strong></td>
+                  	 	<td style="padding-left : 20px;"></td>
+                  	 </tr>
+                  	 <tr>
+                  	 	<td><strong>Address</strong></td>
+                  	 	<td style="padding-left : 20px;"> : <%= @order.Address %></td>
+                  	 </tr>
+                  	 <tr>
+                  	 	<td><strong>City</strong></td>
+                  	 	<td style="padding-left : 20px;"> : <%= @order.City %></td>
+                  	 </tr>
+                  	 <tr>
+                  	 	<td><strong>Location</strong></td>
+                  	 	<td style="padding-left : 20px;"> : <%= @order.Location %></td>
+                  	 </tr>
+                  	 <tr>
+                  	 	<td><strong>Postalcode</strong></td>
+                  	 	<td style="padding-left : 20px;"> : <%= @order.Postalcode %></td>
+                  	 </tr>
+                  	 <tr>
+                  	 	<td><strong>Phone No.</strong></td>
+                  	 	<td style="padding-left : 20px;"> : <%= @order.Phone %></td>
+                  	 </tr>
+                  	</table>
+                  </p>
                 </div>
 							</td>
               <td class = "width35 doRight">
 								<p><strong id ="SubTotal2"></strong></p>
-								<p><strong id ="Tax2">Taxes :</strong></p>
+								<p><strong id ="Tax2">Total plus Taxes :</strong></p>
 								<hr>
-								<h3><strong id = "Total2">TOTAL : </strong></h3>
+								<h3><strong id = "Total2">$ </strong></h3>
             </tr>
 					</table>
 				</div>
