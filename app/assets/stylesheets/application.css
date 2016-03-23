@@ -217,3 +217,7 @@ body {
 #completed{
   color: #29a329;
 }
+
+#cVal {
+align : right; 
+margin : 8px;}

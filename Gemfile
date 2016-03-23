@@ -8,6 +8,9 @@ gem 'sqlite3'
 
 gem 'mysql2', '0.3.18'
 
+#devise login
+gem 'devise'
+
 #For dynamic error messaging
 gem "dynamic_form"
 
