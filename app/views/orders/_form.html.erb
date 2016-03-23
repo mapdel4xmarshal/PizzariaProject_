@@ -1,42 +1,20 @@
 <%= form_for(@order) do |f| %>
 
-
-<!---
-  <div class="field">
-    <%= f.label :Size %><br>
-    <%= f.text_field :Size %>
-  </div>
-  <div class="field">
-    <%= f.label :Toppings %><br>
-    <%= f.text_field :Toppings %>
-  </div>
-  <div class="field">
-    <%= f.label :Price %><br>
-    <%= f.text_field :Price %>
-  </div> -->
-  
-  
-  <!--- my codes  -->
-    
-    <div class="panel panel-primary pizza_panel">
-      <div class="panel-heading">NEW PIZZA ORDER</div>
-          <div class="panel-body">         
+            <% if @order.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@order.errors.count, "error") %> prohibited this pizza order from being processed:</h2>
+                  <ul>
+                     <% @order.errors.full_messages.each do |message| %>
+                     <li><%= message %></li>
+                    <% end %>
+                  </ul>
+              </div>
+            <% end %>
               <div class="panel panel pizza_panel" style="float : left; width : 58%; margin-right:15px;">
                 
                  <div class="panel panel-primary pizza_panel" style="float : left;  width : 100%; ">
                     <div class="panel-heading">PIZZA SIZE</div>
                     <div class="panel-body">
-                      <% if @order.errors[:Size].any? %>
-                      <div id="error_explanation">
-                        <h2><%= pluralize(@order.errors[:Size].count, "error") %> on pizza size prohibited this order from being processed:</h2>
-                  
-                        <ul>
-                        <% @order.errors[:Size].each do |message| %>
-                          <li><%= message %></li>
-                        <% end %>
-                        </ul>
-                      </div>
-                    <% end %>
                       <%= f.radio_button("Size", "Small", :value => "Small") %>
                       <%= label_tag(:Small, "Small") %><br>
                       <%= f.radio_button("Size", "Medium", :value => "Medium") %>
@@ -114,32 +92,27 @@
                               </fieldset>
                                <P><br></P>       
                               <fieldset class="form-group" style="float : left; width : 98%;">
-                                <%= f.label :Address %><br>
+                                <%= f.label :Address %>
                                 <%= f.text_field :Address, :class => 'form-control' %>
                               </fieldset>
                                       
                               <fieldset class="form-group" style="float : left; width : 49%; margin-right:3px;">
-                                <%= f.label :City %><br>
+                                <%= f.label :City %>
                                 <%= f.text_field :City, :class => 'form-control' %>
                               </fieldset>
                               
                               <fieldset class="form-group"  style="float : left; width : 49%;">
-                                    <label for="Location">Location</label> 
-                    									<select class="form-control" id="Location">
-                    										 <option value = "0.10">Manitoba</option>
-                    										 <option value = "0.13">Ontario</option>
-                    										 <option value = "0.11">Quebec</option>
-                    										 <option value = "0.15">Saskatchewan</option>
-                                      </select>
-                                </fieldset>	
+                                 <%= f.label :Location %>
+                    						 <%= f.select(:Location, options_for_select({ "Manitoba" => "Manitoba", "Ontario" => "Ontario", "Quebec" => "Quebec", "Saskatchewan" => "Saskatchewan"}),{include_blank: "Select a Province"},{:class => 'form-control'}) %>
+                              </fieldset>	
                                       
                               <fieldset class="form-group" style="float : left; width : 49%; margin-right:3px;">
-                                <%= f.label :Postalcode %><br>
+                                <%= f.label :Postalcode %>
                                 <%= f.text_field :Postalcode, :class => 'form-control' %>
                               </fieldset>
                                       
                               <fieldset class="form-group"style="float : left; width : 49%;">
-                                <%= f.label :Phone %><br>
+                                <%= f.label :Phone %>
                                 <%= f.text_field :Phone, :class => 'form-control' %>
                               </fieldset> 
                           </div>  
@@ -148,17 +121,6 @@
                           <div class="panel panel-primary pizza_panel" style="width : 92%; text-align:left;">
                               <div class="panel-heading">QUANTITY</div>
                               <div class="panel-body">
-                                  <% if @order.errors[:quantity].any? %>
-                                   <div id="error_explanation">
-                                     <h2><%= pluralize(@order.errors[:quantity].count, "error") %> on quantity prohibited this order from being processed:</h2>
-                              
-                                     <ul>
-                                     <% @order.errors[:quantity].each do |message| %>
-                                       <li><%= message %></li>
-                                     <% end %>
-                                     </ul>
-                                   </div>
-                                 <% end %>
                                  <fieldset class="form-group">
                                     <!-- # <%= select_tag(:quantity,options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5], ['6', 6], ['7', 7], ['8', 8], ['9', 9], ['10', 10]], 1), :class => 'form-control' ) %>
                   								  --><%= f.number_field :quantity, {:min => 1, :max =>100, :class => 'form-control'} %>
@@ -166,7 +128,9 @@
                               </div>                             
                           </div>   
                           </center>  
-                      <p></p>
+                      <p>
+                        
+                      </p>
                       <div style="float : right; margin : 10px;"><!-- action -->
                         <%= f.submit :class => 'btn btn-primary btn-lg' %>
                       </div>

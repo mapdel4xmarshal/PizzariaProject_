@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Users</h1>
+<h1>Listing Users</h1> <%= link_to 'New User', new_user_path, :class => 'btn btn-primary', :id => 'mycolor', :style => 'float : right; margin-top:-40px;' %>
 
-<table>
+<table class="table table-striped" style = "width:100%;">
   <thead>
     <tr>
       <th>Firstname</th>
@@ -16,14 +16,12 @@
       <tr>
         <td><%= user.FirstName %></td>
         <td><%= user.LastName %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', user, :class => 'btn btn-success', :id => 'mycolor' %></td>
+        <td><%= link_to 'Edit', edit_user_path(user), :class => 'btn btn-info' %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, :id => 'mycolor', :class => 'btn btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
 
-<%= link_to 'New User', new_user_path %>

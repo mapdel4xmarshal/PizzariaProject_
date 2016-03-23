@@ -22,7 +22,7 @@
 			  <th><%= @order.Crust %></th>
 			  <th><%= @order.Toppings %></th>
 			  <th><%= @order.quantity %></th>
-			  <th>$</th>
+			  <th><%= number_to_currency($prePrice) %></th>
             </tr>
           </tbody>
         </table>  
@@ -64,9 +64,9 @@
 							</td>
               <td class = "width35 doRight">
 								<p><strong id ="SubTotal2"></strong></p>
-								<p><strong id ="Tax2">Total plus Taxes :</strong></p>
+								<p><strong id ="Tax2">Tax : <%= number_to_currency($Tax) %></strong></p>
 								<hr>
-								<h3><strong id = "Total2">$ </strong></h3>
+								<h2><strong id = "Total2">TOTAL : <%= number_to_currency(@order.Price) %></strong></h2>
             </tr>
 					</table>
 				</div>
