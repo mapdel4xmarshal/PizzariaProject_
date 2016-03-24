@@ -1,27 +1,35 @@
-<p id="notice"><%= notice %></p>
+<% if user_signed_in? && current_user.admin? %>
 
-<h1>Listing Users</h1> <%= link_to 'New User', new_user_registration_path, :class => 'btn btn-primary', :id => 'mycolor', :style => 'float : right; margin-top:-40px;' %>
+    <p id="notice"><%= notice %></p>
+    
+    <h1>Listing Users</h1>
+    <table class="table table-striped" id = "order_Address">
+      <thead>
+        <tr>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Email Address</th>
+          <th>Admin</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+    
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.FirstName %></td>
+            <td><%= user.LastName %></td>
+            <td><%= user.email %></td>
+            <td><%= user.admin %></td>
+            <td><%= link_to 'Show', user, :class => 'btn btn-success', :id => 'mycolor' %></td>
+            <td><%= link_to 'Edit', edit_user_registration_path, :class => 'btn btn-info', :id => 'mycolor' %></td>
+            <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, :id => 'mycolor', :class => 'btn btn-danger' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+<% end %>   
 
-<table class="table table-striped" style = "width:100%;">
-  <thead>
-    <tr>
-      <th>Firstname</th>
-      <th>Lastname</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.FirstName %></td>
-        <td><%= user.LastName %></td>
-        <td><%= link_to 'Show', user, :class => 'btn btn-success', :id => 'mycolor' %></td>
-        <td><%= link_to 'Edit', edit_user_path(user), :class => 'btn btn-info' %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, :id => 'mycolor', :class => 'btn btn-danger' %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
+<% if(!user_signed_in? || !current_user.admin?) %>
+  <h2 class="center">Oops...This Page is Only Accessible To Admins</h2> 
+<% end %>

@@ -1,41 +1,171 @@
-<p id="notice"><%= notice %></p>
+<% if(!user_signed_in? || (user_signed_in? && !current_user.admin?)) %>
+   <h2 class = "center">Oops...This Page is only accessible to Admins</h2>
+<% end %>
 
-<h1>Pizza Orders</h1>
-<div><%= link_to 'New Order', new_order_path, :class => 'btn btn-primary', :id => 'mycolor', :style => 'float : right; margin-top:-40px;' %></div>
+<% if(user_signed_in? && current_user.admin?) %>
+  <p id="notice"><%= notice %></p>
+    
+  <h1>Pizza Orders</h1>
+  <div><%= link_to 'New Order', new_order_path, :class => 'btn btn-primary right', :id => 'mycolor', :id => 'topmargin_40' %></div>
+  
+  <hr>
+  <div id="exTab2" class="">	
+    <ul class="nav nav-tabs">
+  			<li class="active">
+          <a  href="#1" data-toggle="tab">All Order</a>
+  			</li>
+  			<li><a href="#2" data-toggle="tab">Pending Orders</a>
+  			</li>
+  			<li><a href="#3" data-toggle="tab">Completed Orders</a>
+  			</li>
+  	</ul>
 
-<hr>
-
-<table class="table table-striped" style = "width:100%;">
-  <thead>
-    <tr>
-      <th>Order#</th>
-      <th>Qty</th>
-      <th>Size</th>
-      <th>Crust</th>
-      <th>Toppings</th>
-      <th>Price</th>
-      <th>Status</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @orders.each do |order| %>
-      <tr>
-        <td><%= order.id %></td>
-        <th><%= order.quantity %></th>
-        <td><%= order.Size %></td>
-        <td><%= order.Crust %></td>
-        <td><%= order.Toppings %></td>
-        <td>$<%= order.Price %></td>
-        <td><strong id="completed">Completed</strong></td>
-        <td><%= link_to 'Show', order, :class => 'btn btn-info', :id => 'mycolor' %></td>
-        <td><%= link_to 'Edit', edit_order_path(order), :class => 'btn btn-primary', :id => 'mycolor'%></td>
-        <td><%= link_to 'Delete', order, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger', :id => 'mycolor' %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
+  	<div class="tab-content ">
+  		<div class="tab-pane active" id="1">
+        <table class="table table-striped" id = "order_Address">
+          <thead>
+            <tr>
+              <th>Order#</th>
+              <th>Qty</th>
+              <th>Size</th>
+              <th>Crust</th>
+              <th>Toppings</th>
+              <th>Price</th>
+              <th>Status</th>
+              <th class = "fwidth150">Deliver To</th>
+              <th class = "">Location</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+  
+          <tbody>
+            <% @orders.each do |order| %>
+              <tr>
+                <td><%= order.id %></td>
+                <th><%= order.quantity %></th>
+                <td><%= order.Size %></td>
+                <td><%= order.Crust %></td>
+                <td class=""><%= order.Toppings %></td>
+                <td><%= number_to_currency(order.Price) %></td>
+                <td>
+                  <% if(order.status) %>
+                    <strong id="completed">Completed</strong>
+                  <% end %>
+                  
+                  <% if(!order.status) %>
+                    <strong id="pending">Pending</strong>
+                  <% end %>
+                  
+                </td>
+                <td><%= order.FirstName %> <%= order.LastName %></td>
+                <td><%= order.Location %></td>
+                <td><%= link_to 'Show', order, :class => 'btn btn-info', :id => 'mycolor' %></td>
+                <td><%= link_to 'Edit', edit_order_path(order), :class => 'btn btn-primary', :id => 'mycolor'%></td>
+                <td><%= link_to 'Delete', order, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger', :id => 'mycolor' %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+  		</div>
+  				
+			<div class="tab-pane" id="2">
+        <table class="table table-striped" id = "order_Address">
+          <thead>
+            <tr>
+              <th>Order#</th>
+              <th>Qty</th>
+              <th>Size</th>
+              <th>Crust</th>
+              <th>Toppings</th>
+              <th>Price</th>
+              <th>Status</th>
+              <th class = "fwidth150">Deliver To</th>
+              <th class = "">Location</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+        
+          <tbody>
+            <% @orders.each do |order| %>
+            <% if(!order.status) %>
+              <tr>
+                <td><%= order.id %></td>
+                <th><%= order.quantity %></th>
+                <td><%= order.Size %></td>
+                <td><%= order.Crust %></td>
+                <td class=""><%= order.Toppings %></td>
+                <td><%= number_to_currency(order.Price) %></td>
+                <td>
+                  <% if(order.status) %>
+                    <strong id="completed">Completed</strong>
+                  <% end %>
+                  
+                  <% if(!order.status) %>
+                    <strong id="pending">Pending</strong>
+                  <% end %>
+                  
+                </td>
+                <td><%= order.FirstName %> <%= order.LastName %></td>
+                <td><%= order.Location %></td>
+                <td><%= link_to 'Show', order, :class => 'btn btn-info', :id => 'mycolor' %></td>
+                <td><%= link_to 'Edit', edit_order_path(order), :class => 'btn btn-primary', :id => 'mycolor'%></td>
+                <td><%= link_to 'Delete', order, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger', :id => 'mycolor' %></td>
+              </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+			</div>
+          
+      <div class="tab-pane" id="3">
+        <table class="table table-striped" id = "order_Address">
+          <thead>
+            <tr>
+              <th>Order#</th>
+              <th>Qty</th>
+              <th>Size</th>
+              <th>Crust</th>
+              <th>Toppings</th>
+              <th>Price</th>
+              <th>Status</th>
+              <th class = "fwidth150">Deliver To</th>
+              <th class = "">Location</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+        
+          <tbody>
+            <% @orders.each do |order| %>
+            <% if(order.status) %>
+              <tr>
+                <td><%= order.id %></td>
+                <th><%= order.quantity %></th>
+                <td><%= order.Size %></td>
+                <td><%= order.Crust %></td>
+                <td class=""><%= order.Toppings %></td>
+                <td><%= number_to_currency(order.Price) %></td>
+                <td>
+                  <% if(order.status) %>
+                    <strong id="completed">Completed</strong>
+                  <% end %>
+                  
+                  <% if(!order.status) %>
+                    <strong id="pending">Pending</strong>
+                  <% end %>
+                  
+                </td>
+                <td><%= order.FirstName %> <%= order.LastName %></td>
+                <td><%= order.Location %></td>
+                <td><%= link_to 'Show', order, :class => 'btn btn-info', :id => 'mycolor' %></td>
+                <td><%= link_to 'Edit', edit_order_path(order), :class => 'btn btn-primary', :id => 'mycolor'%></td>
+                <td><%= link_to 'Delete', order, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger', :id => 'mycolor' %></td>
+              </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+			</div>
+  	</div>
+  </div>
+<% end %>
 

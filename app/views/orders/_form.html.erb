@@ -1,150 +1,173 @@
-<%= form_for(@order) do |f| %>
-
-            <% if @order.errors.any? %>
-              <div id="error_explanation">
-                <h2><%= pluralize(@order.errors.count, "error") %> prohibited this pizza order from being processed:</h2>
-                  <ul>
-                     <% @order.errors.full_messages.each do |message| %>
-                     <li><%= message %></li>
-                    <% end %>
-                  </ul>
-              </div>
-            <% end %>
-              <div class="panel panel pizza_panel" style="float : left; width : 58%; margin-right:15px;">
-                
-                 <div class="panel panel-primary pizza_panel" style="float : left;  width : 100%; ">
-                    <div class="panel-heading">PIZZA SIZE</div>
-                    <div class="panel-body">
-                      <%= f.radio_button("Size", "Small", :value => "Small") %>
-                      <%= label_tag(:Small, "Small") %><br>
-                      <%= f.radio_button("Size", "Medium", :value => "Medium") %>
-                      <%= label_tag(:Medium, "Medium") %><br>
-                      <%= f.radio_button("Size", "Large", :value => "Large") %>
-                      <%= label_tag(:Small, "Large") %><br>
-                      <%= f.radio_button("Size", "Extra Large", :value => "Extra Large") %>
-                      <%= label_tag(:Medium, "Extra Large") %><br>
-                    </div>
+        <%= form_for(@order) do |f| %>
+          <% if @order.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@order.errors.count, "error") %> prohibited this pizza order from being processed:</h2>
+              <ul>
+                 <% @order.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                 <% end %>
+              </ul>
+            </div>
+          <% end %>
+          
+          <div class="panel panel pizza_panel" id="pzp">
+             <div class="panel panel-primary pizza_panel left" id="order_Address">
+                <div class="panel-heading">PIZZA SIZE</div>
+                  <div class="panel-body">
+                    <%= f.radio_button("Size", "Small", :value => "Small", :class => "left") %>
+                    <%= label_tag(:Small, " Small") %><br>
+                    <%= f.radio_button("Size", "Medium", :value => "Medium", :class => "left") %>
+                    <%= label_tag(:Medium, " Medium") %><br>
+                    <%= f.radio_button("Size", " Large", :value => "Large", :class => "left") %>
+                    <%= label_tag(:Small, "Large") %><br>
+                    <%= f.radio_button("Size", "Extra Large", :value => "Extra Large", :class => "left"  ) %>
+                    <%= label_tag(:Medium, "Extra Large") %><br>
                   </div>
-                  
-                 <p></p>
-                 <div class="panel panel-primary pizza_panel" style="float : left;  width : 100%; ">
-                    <div class="panel-heading">CRUST</div>
+                </div>
+                <p></p>
+                 
+                <div class="panel panel-primary pizza_panel left" id="order_Address">
+                  <div class="panel-heading">CRUST</div>
+                  <div class="panel-body">
+                    <%= f.check_box( :Crust, {}, "Stuffed", "None") %>
+                    <%= label_tag(:Crust, "Stuffed") %>
+                  </div>
+                </div>  
+                            
+                <div class="panel panel-primary pizza_panel" id = "pzpz">
+                  <div class="panel-heading">CHOOSE MEATS</div>
+                  <div class="panel-body">
+                      <%= check_box_tag 'order[Toppings][]', 'Pepperoni', checked('Pepperoni'), id: 'Toppings_Pepperoni' %>
+                      <%= label_tag 'Toppings_Pepperoni', 'Pepperoni' %><br>
+                      
+                      <%= check_box_tag 'order[Toppings][]', 'Beef', checked('Beef'), id: 'Toppings_Beef' %>
+                      <%= label_tag 'Toppings_Beef', 'Beef' %><br>
+                      
+                      <%= check_box_tag 'order[Bacon][]', 'Bacon', checked('Bacon'), id: 'Toppings_Bacon' %>
+                      <%= label_tag 'Toppings_Bacon', 'Bacon' %><br>
+                      
+                      <%= check_box_tag 'order[Toppings][]', 'Chicken', checked('Chicken'), id: 'Toppings_Chicken' %>
+                      <%= label_tag 'Toppings_Chicken', 'Chicken' %><br>
+                      
+                      <%= check_box_tag 'order[Toppings][]', 'Sausage', checked('Sausage'), id: 'Toppings_Sausage' %>
+                      <%= label_tag 'Toppings_Sausage', 'Sausage' %>
+                  </div> 
+                </div>  
+                                        
+                <div class="panel panel-primary pizza_panel" id="pzpz">
+                  <div class="panel-heading">CHOOSE NONE MEATS</div>
+                  <div class="panel-body">
+                      <%= check_box_tag 'order[Toppings][]', 'Pineapple', checked('Pineapple'), id: 'Toppings_Pineapple' %>
+                      <%= label_tag 'Toppings_Pineapple', 'Pineapple' %><br>
+                      
+                      <%= check_box_tag 'order[Toppings][]', 'Onion', checked('Onion'), id: 'Toppings_Onion' %>
+                      <%= label_tag 'Toppings_Onion', 'Onion' %><br>
+                      
+                      <%= check_box_tag 'order[Toppings][]', 'Tomatoes', checked('Tomatoes'), id: 'Toppings_Tomatoes' %>
+                      <%= label_tag 'Toppings_Tomatoes', 'Tomatoes' %><br>
+                      
+                      <%= check_box_tag 'order[Toppings][]', 'Green Pepper', checked('Green Pepper'), id: 'Toppings_GreenPepper' %>
+                      <%= label_tag 'Toppings_GreenPepper', 'Green Pepper' %><br>
+                      
+                      <%= check_box_tag 'order[Toppings][]', 'Mushroom', checked('Mushroom'), id: 'Toppings_Mushroom' %>
+                      <%= label_tag 'Toppings_Mushroom', 'Mushroom' %>
+                  </div>                             
+                </div>   
+                
+                <% if(user_signed_in? && current_user.admin?) %>
+                 <div class="panel panel-primary pizza_panel left" id="order_Address">
+                    <div class="panel-heading"><Status></Status></div>
                     <div class="panel-body">
-                      <%= f.check_box( :Crust, {}, "Stuffed", "None") %>
-                      <%= label_tag(:Crust, "Stuffed") %>
+                      <%= f.check_box( :status, {}, true, false) %>
+                      <%= label_tag(:status, "Completed") %>
                     </div>
-                  </div>  
-                    
-                      <div class="panel panel-primary pizza_panel" style="float : left; width : 49%; ">
-                              <div class="panel-heading">CHOOSE MEATS</div>
-                              <div class="panel-body">
-                                  <%= check_box_tag 'order[Toppings][]', 'Pepperoni', checked('Pepperoni'), id: 'Toppings_Pepperoni' %>
-                                  <%= label_tag 'Toppings_Pepperoni', 'Pepperoni' %><br>
-                                  
-                                  <%= check_box_tag 'order[Toppings][]', 'Beef', checked('Beef'), id: 'Toppings_Beef' %>
-                                  <%= label_tag 'Toppings_Beef', 'Beef' %><br>
-                                  
-                                  <%= check_box_tag 'order[Bacon][]', 'Bacon', checked('Bacon'), id: 'Toppings_Bacon' %>
-                                  <%= label_tag 'Toppings_Bacon', 'Bacon' %><br>
-                                  
-                                  <%= check_box_tag 'order[Toppings][]', 'Chicken', checked('Chicken'), id: 'Toppings_Chicken' %>
-                                  <%= label_tag 'Toppings_Chicken', 'Chicken' %><br>
-                                  
-                                  <%= check_box_tag 'order[Toppings][]', 'Sausage', checked('Sausage'), id: 'Toppings_Sausage' %>
-                                  <%= label_tag 'Toppings_Sausage', 'Sausage' %>
-                              </div> 
-                             </div>  
-                                
-                          <div class="panel panel-primary pizza_panel" style="float : left; width : 49%;">
-                              <div class="panel-heading">CHOOSE NONE MEATS</div>
-                              <div class="panel-body">
-                                  <%= check_box_tag 'order[Toppings][]', 'Pineapple', checked('Pineapple'), id: 'Toppings_Pineapple' %>
-                                  <%= label_tag 'Toppings_Pineapple', 'Pineapple' %><br>
-                                  
-                                  <%= check_box_tag 'order[Toppings][]', 'Onion', checked('Onion'), id: 'Toppings_Onion' %>
-                                  <%= label_tag 'Toppings_Onion', 'Onion' %><br>
-                                  
-                                  <%= check_box_tag 'order[Toppings][]', 'Tomatoes', checked('Tomatoes'), id: 'Toppings_Tomatoes' %>
-                                  <%= label_tag 'Toppings_Tomatoes', 'Tomatoes' %><br>
-                                  
-                                  <%= check_box_tag 'order[Toppings][]', 'Green Pepper', checked('Green Pepper'), id: 'Toppings_GreenPepper' %>
-                                  <%= label_tag 'Toppings_GreenPepper', 'Green Pepper' %><br>
-                                  
-                                  <%= check_box_tag 'order[Toppings][]', 'Mushroom', checked('Mushroom'), id: 'Toppings_Mushroom' %>
-                                  <%= label_tag 'Toppings_Mushroom', 'Mushroom' %>
-                              </div>                             
-                          </div>   
-                    
-              </div><!--  END OF ORDERS -->
-              
-              <div class="panel panel-primary pizza_panel" style="float : left; width : 39%;">
-                 <div class="panel-heading">DELIVERY INFORMATION</div>
-                    <div class="panel-body" style="margin-bottom:10px;">
-                     
-                      <fieldset class="form-group" style="float : left; width : 49%; margin-right:3px;">
-                                <label for="Firstname">First Name *</label>
-                                <input type="text" class="form-control" id="firstname" placeholder="First Name">
-                              </fieldset>
-                                      
-                              <fieldset class="form-group" style="float : left; width : 49%;">
-                                <label for="Lastname">Last Name *</label>
-                                <input type="text" class="form-control" id="lastname" placeholder="Last Name">
-                              </fieldset>
-                               <P><br></P>       
-                              <fieldset class="form-group" style="float : left; width : 98%;">
-                                <%= f.label :Address %>
-                                <%= f.text_field :Address, :class => 'form-control' %>
-                              </fieldset>
-                                      
-                              <fieldset class="form-group" style="float : left; width : 49%; margin-right:3px;">
-                                <%= f.label :City %>
-                                <%= f.text_field :City, :class => 'form-control' %>
-                              </fieldset>
-                              
-                              <fieldset class="form-group"  style="float : left; width : 49%;">
-                                 <%= f.label :Location %>
-                    						 <%= f.select(:Location, options_for_select({ "Manitoba" => "Manitoba", "Ontario" => "Ontario", "Quebec" => "Quebec", "Saskatchewan" => "Saskatchewan"}),{include_blank: "Select a Province"},{:class => 'form-control'}) %>
-                              </fieldset>	
-                                      
-                              <fieldset class="form-group" style="float : left; width : 49%; margin-right:3px;">
-                                <%= f.label :Postalcode %>
-                                <%= f.text_field :Postalcode, :class => 'form-control' %>
-                              </fieldset>
-                                      
-                              <fieldset class="form-group"style="float : left; width : 49%;">
-                                <%= f.label :Phone %>
-                                <%= f.text_field :Phone, :class => 'form-control' %>
-                              </fieldset> 
-                          </div>  
+                 </div>
+                <% end %>
+                
+          </div><!--  END OF ORDERS -->
                       
-                          <center>
-                          <div class="panel panel-primary pizza_panel" style="width : 92%; text-align:left;">
-                              <div class="panel-heading">QUANTITY</div>
-                              <div class="panel-body">
-                                 <fieldset class="form-group">
-                                    <!-- # <%= select_tag(:quantity,options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5], ['6', 6], ['7', 7], ['8', 8], ['9', 9], ['10', 10]], 1), :class => 'form-control' ) %>
-                  								  --><%= f.number_field :quantity, {:min => 1, :max =>100, :class => 'form-control'} %>
-                  								</fieldset>
-                              </div>                             
-                          </div>   
-                          </center>  
-                      <p>
+          <div class="panel panel-primary pizza_panel" id="pzzzp">
+            <div class="panel-heading">DELIVERY INFORMATION</div>
+              <div class="panel-body" id="mb10">
+                 
+                <% if(user_signed_in?) %>
+                  <fieldset class="form-group marginl3" id="pzpz">
+                     <%= f.label :FirstName %>
+                     <%= f.text_field :FirstName, :class => 'form-control', :placeholder => "First Name", :value => current_user.FirstName %>
+                  </fieldset>
+                                  
+                  <fieldset class="form-group" id="pzpz">
+                     <%= f.label :LastName %>
+                     <%= f.text_field :LastName, :class => 'form-control', :placeholder => "Last Name", :value => current_user.LastName %>
+                  </fieldset>
+                <% end %>
+                  
+                <% if(!user_signed_in?) %>
+                  <fieldset class="form-group marginl3" id="pzpz">
+                     <%= f.label :FirstName %>
+                     <%= f.text_field :FirstName, :class => 'form-control', :placeholder => "First Name" %>
+                  </fieldset>
+                                  
+                  <fieldset class="form-group" id="pzpz">
+                     <%= f.label :LastName %>
+                     <%= f.text_field :LastName, :class => 'form-control', :placeholder => "Last Name" %>
+                  </fieldset>
+                <% end %>
+                  
+                <P><br></P>       
+                  
+                <fieldset class="form-group left" id="w99">
+                   <%= f.label :Address %>
+                   <%= f.text_field :Address, :class => 'form-control', :placeholder => "Street Address" %>
+                </fieldset>
+                                  
+                <fieldset class="form-group marginl3" id="pzpz">
+                  <%= f.label :City %>
+                  <%= f.text_field :City, :class => 'form-control', :placeholder => "City" %>
+                </fieldset>
+                
+                <fieldset class="form-group"  id="pzpz">
+                   <%= f.label :Location %>
+        					 <%= f.select(:Location, options_for_select({ "Manitoba" => "Manitoba", "Ontario" => "Ontario", "Quebec" => "Quebec", "Saskatchewan" => "Saskatchewan"},"Ontario"),{},{:class => 'form-control'}) %>
+                </fieldset>	
                         
-                      </p>
-                      <div style="float : right; margin : 10px;"><!-- action -->
-                        <%= f.submit :class => 'btn btn-primary btn-lg' %>
-                      </div>
-                      
-                      <div style="float : left; margin : 10px;">
-                        <%= link_to 'Back', orders_path, :class => 'btn btn-danger btn-lg mycolor', :id => 'mycolor' %>
-                      </div>
-                    </div>
+                <fieldset class="form-group marginl3" id="pzpz">
+                  <%= f.label :Postalcode %>
+                  <%= f.text_field :Postalcode, :class => 'form-control', :placeholder => "e.g N2P 1E1" %>
+                </fieldset>
+                                  
+                <fieldset class="form-group" id="pzpz">
+                  <%= f.label :Phone %>
+                  <%= f.text_field :Phone, :class => 'form-control', :placeholder => "e.g 519 978 3348" %>
+                </fieldset> 
+              </div>  
+                  
+              <center>
+                <div class="panel panel-primary pizza_panel" id="w92ta">
+                    <div class="panel-heading">QUANTITY</div>
+                    <div class="panel-body">
+                       <fieldset class="form-group">
+                          <!-- # <%= select_tag(:quantity,options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5], ['6', 6], ['7', 7], ['8', 8], ['9', 9], ['10', 10]], 1), :class => 'form-control' ) %>
+        								  --><%= f.number_field :quantity, {:min => 1, :max =>100, :class => 'form-control'} %>
+        								</fieldset>
+                    </div>                             
+                </div>   
+              </center>  
+                  
+              <p></p>
+              <div class="right" id="m10"><!-- action -->
+                <%= f.submit :class => 'btn btn-primary btn-lg' %>
               </div>
               
-              
-              
-           </div> 
-    </div>  
+              <% if(user_signed_in? && current_user.admin?) %>
+                <div class="left" id="m10">
+                  <%= link_to 'Back', orders_path, :class => 'btn btn-danger btn-lg mycolor', :id => 'mycolor' %>
+                </div>
+              <% end %>
+          </div>
+        </div>
+     </div> 
+  </div>  
   <!-- ENDS -->
   
 <% end %>

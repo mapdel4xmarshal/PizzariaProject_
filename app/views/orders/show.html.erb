@@ -1,79 +1,85 @@
-	<div class="panel panel-primary minwidth">
-		<div class="panel-heading" role="tab" id="heading2">
-      <h4 class="panel-title">Order Summary</h4></div>
-      <div class="panel-body">
+<div class="panel panel-primary minwidth">
+	<div class="panel-heading" role="tab" id="heading2">
+  		<h4 class="panel-title">Order Summary</h4>
+  	</div>
+  	
+  	<div class="panel-body">
         <p id="notice"><%= notice %></p>
-				<table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Order#</th>
-              <th>Size</th>
-							<th>Crust</th>
-							<th>Toppings</th>
-							<th>Qty</th>
-							<th>Price</th>
-            </tr>
-          </thead>
+		<table class="table table-striped">
+          	<thead>
+            	<tr>
+	              <th>Order#</th>
+	              <th>Size</th>
+					<th>Crust</th>
+					<th>Toppings</th>
+					<th>Qty</th>
+					<th>Price</th>
+           		</tr>
+          	</thead>
           
-          <tbody >
+	        <tbody>
              <tr>
               <th><%= @order.id %></th>
               <th><%= @order.Size %></th>
 			  <th><%= @order.Crust %></th>
 			  <th><%= @order.Toppings %></th>
 			  <th><%= @order.quantity %></th>
-			  <th><%= number_to_currency($prePrice) %></th>
+			  <th><%= number_to_currency(@order.Price) %></th>
             </tr>
-          </tbody>
+	        </tbody>
         </table>  
 							
-				<div class="panel panel-default">
-					<table class ="table table-bordered">
-						<tr>
-              <td class = "width65">
-								<div><h5><strong>Delivery Information</strong></h5><hr>
-                  <p id = "delivery">
-                  	<table>
-                  	 <tr>
-                  	 	<td><strong>Full Name</strong></td>
-                  	 	<td style="padding-left : 20px;"></td>
-                  	 </tr>
-                  	 <tr>
-                  	 	<td><strong>Address</strong></td>
-                  	 	<td style="padding-left : 20px;"> : <%= @order.Address %></td>
-                  	 </tr>
-                  	 <tr>
-                  	 	<td><strong>City</strong></td>
-                  	 	<td style="padding-left : 20px;"> : <%= @order.City %></td>
-                  	 </tr>
-                  	 <tr>
-                  	 	<td><strong>Location</strong></td>
-                  	 	<td style="padding-left : 20px;"> : <%= @order.Location %></td>
-                  	 </tr>
-                  	 <tr>
-                  	 	<td><strong>Postalcode</strong></td>
-                  	 	<td style="padding-left : 20px;"> : <%= @order.Postalcode %></td>
-                  	 </tr>
-                  	 <tr>
-                  	 	<td><strong>Phone No.</strong></td>
-                  	 	<td style="padding-left : 20px;"> : <%= @order.Phone %></td>
-                  	 </tr>
-                  	</table>
-                  </p>
-                </div>
-							</td>
-              <td class = "width35 doRight">
-								<p><strong id ="SubTotal2"></strong></p>
-								<p><strong id ="Tax2">Tax : <%= number_to_currency($Tax) %></strong></p>
-								<hr>
-								<h2><strong id = "Total2">TOTAL : <%= number_to_currency(@order.Price) %></strong></h2>
-            </tr>
-					</table>
-				</div>
-				
-				<%= link_to 'Edit', edit_order_path(@order), :class => 'btn btn-info' %>
-        <%= link_to 'Home', orders_path, :class => 'btn btn-primary', :id => 'mycolor' %>
-				
-		  </div>
+		<div class="panel panel-default">
+			<table class ="table table-bordered">
+				<tr>
+              		<td class = "width65">
+						<div>
+							<h5><strong>Delivery Information</strong></h5><hr>
+			                  <p id = "delivery">
+			                  	<table>
+			                  	 <tr>
+			                  	 	<td><strong>Full Name</strong></td>
+			                  	 	<td class="paddingleft20"> : <%= @order.FirstName + "  " + @order.LastName  %></td>
+			                  	 </tr>
+			                  	 <tr>
+			                  	 	<td><strong>Address</strong></td>
+			                  	 	<td class="paddingleft20"> : <%= @order.Address %></td>
+			                  	 </tr>
+			                  	 <tr>
+			                  	 	<td><strong>City</strong></td>
+			                  	 	<td class="paddingleft20"> : <%= @order.City %></td>
+			                  	 </tr>
+			                  	 <tr>
+			                  	 	<td><strong>Location</strong></td>
+			                  	 	<td class="paddingleft20"> : <%= @order.Location %></td>
+			                  	 </tr>
+			                  	 <tr>
+			                  	 	<td><strong>Postalcode</strong></td>
+			                  	 	<td class="paddingleft20"> : <%= @order.Postalcode %></td>
+			                  	 </tr>
+			                  	 <tr>
+			                  	 	<td><strong>Phone No.</strong></td>
+			                  	 	<td class="paddingleft20"> : <%= @order.Phone %></td>
+			                  	 </tr>
+			                  	</table>
+			                  </p>
+                		</div>
+			   		</td>
+		            <td class = "width35 doRight">
+						<!-- <p><strong id ="SubTotal2"></strong></p>
+						<p><strong id ="Tax2">Tax : #<%= number_to_currency($Tax) %></strong></p>-->
+						<hr>
+						<h2><strong id = "Total2">TOTAL : <%= number_to_currency(@order.Price) %></strong></h2> 
+					</td>
+            	</tr>
+			</table>
 		</div>
-  </div>
+		 <%= if(user_signed_in? && current_user.admin?)	
+		    link_to 'Edit Order', edit_order_path(@order), :class => 'btn btn-success right', :id => 'mycolor'
+		 end %>	
+		 <%= if(user_signed_in? && current_user.admin?)	
+            link_to 'Show All Orders', orders_path, :class => 'btn btn-primary left', :id => 'mycolor'
+		 end %>	
+  		</div>
+	</div>	
+</div>

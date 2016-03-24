@@ -1,26 +1,64 @@
-<h2>Log in</h2>
+<body background="./images/pattern2.jpg">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <div id="login-overlay" class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel"><b>Login to your Conestoga Pizzaria Account</b></h4>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-xs-6">
+                      <div class="well">
+                          <%= form_for(resource, as: resource_name, url: session_path(resource_name), :class => 'loginform') do |f| %>
+                              <div class="form-group">  
+                                   <div class="field">
+                                      <%= f.label :email %><br />
+                                      <%= f.email_field :email, autofocus: true, :class => "form-control"  , :placeholder =>"Email Address" %>
+                                   </div>
+                                  <span class="help-block"></span>
+                              </div>
+                              <div class="form-group">
+                                   <div class="field">
+                                    <%= f.label :password %><br />
+                                    <%= f.password_field :password, autocomplete: "off", :class => "form-control", :placeholder => "Please Enter Your Password" %>
+                                  </div>
+                                  <span class="help-block"></span>
+                              </div>
+                              <div id="loginErrorMsg" class="alert alert-error hide">Wrong username or password</div>
+                              <div class="checkbox">
+                                 <% if devise_mapping.rememberable? -%>
+                                  <div class="field">
+                                    <%= f.check_box :remember_me, :id => 'checkbox' %>
+                                    <%= f.label :remember_me %>
+                                  </div>
+                                 <% end -%>
+                              </div>
+                              <div class="actions">
+                                <%= f.submit "Log in", :class => 'btn btn-success btn-block' %>
+                              </div>
+                          <% end %>
+                          <center>
+                            <div class="login-help">
+                              <%= render "devise/shared/links" %>
+                            </div>
+                          </center>
+                      </div>
+                  </div>
+                  <div class="col-xs-6 taleft">
+                      <p class="lead">Register now for <span class="text-success">FREE</span></p>
+                      <ul class="list-unstyled lh">
+                          <li><span class="fa fa-check text-success"></span> See all your orders</li>
+                          <li><span class="fa fa-check text-success"></span> Shipping is always free</li>
+                          <li><span class="fa fa-check text-success"></span> Save your favorites</li>
+                          <li><span class="fa fa-check text-success"></span> Fast checkout</li>
+                          <li><span class="fa fa-check text-success"></span> Get a gift <small>(only new customers)</small></li>
+                          <li><span class="fa fa-check text-success"></span> Holiday discounts up to 30% off</li>
+                      </ul>
+                      <p><%= link_to "Sign up", new_registration_path(resource_name), :class => 'btn btn-info btn-block', :id => 'mycolor' %></p>
+                  </div>
+              </div>
+          </div>
+      </div>
+
   </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>

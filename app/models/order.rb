@@ -7,6 +7,8 @@ class Order < ActiveRecord::Base
     validates :quantity, presence: true
     validates :Address, presence: true, :length => { :minimum => 3}
     validates :City, presence: true, :length => { :minimum => 3}
+    validates :FirstName, presence: true, :length => { :minimum => 3}
+    validates :LastName, presence: true, :length => { :minimum => 3}
     
     validates :quantity, numericality: { only_integer: true, :allow_nil => false }
     
@@ -15,9 +17,11 @@ class Order < ActiveRecord::Base
 
     canadian_phone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
     validates :Phone, format: { with: canadian_phone, :multiline => true}
-    
+        
     validates :Location, :presence => true
     
+    $Tax = 0
+    $prePrice = 0
      
     def Price 
       @SizePrice = 0
