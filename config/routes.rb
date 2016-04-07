@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   resources :users
   
   devise_scope :user do
-  get "/sign_in" => "devise/sessions#new"
-  get "/logout" => "devise/sessions#destroy"
-  get "/sign_up" => "devise/registrations#new"
-end
+    get "/sign_in" => "devise/sessions#new"
+    get "/logout" => "devise/sessions#destroy"
+    get "/sign_up" => "devise/registrations#new"
+  end
   
   root 'orders#new'
   # The priority is based upon order of creation: first created -> highest priority.

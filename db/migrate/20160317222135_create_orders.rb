@@ -5,7 +5,7 @@ class CreateOrders < ActiveRecord::Migration
       t.string :Crust
       t.string :Toppings
       t.string :Price
-      t.int :Quantity
+      t.integer :Quantity
 
       t.timestamps null: false
     end
